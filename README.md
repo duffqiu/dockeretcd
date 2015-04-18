@@ -16,6 +16,6 @@ docker run -d --name etcd-cluster -p 9001:9001 duffqiu/etcd /etcd/start-local-cl
 
 ### run mutilple nodes to setup a cluster
 
-- run a contain with etcd daemon command and follow the cluster parameters in office document: https://github.com/coreos/etcd/blob/master/Documentation/configuration.md
+- run a contain with etcd daemon command and follow the cluster parameters in office document: [etcd configuration](https://github.com/coreos/etcd/blob/master/Documentation/configuration.md)
 - for example, node1 `docker run -d --name etcd1 -p 4001:4001 duffqiu/etcd /etcd/etcd <parameters>`
-- 
+
