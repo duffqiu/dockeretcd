@@ -21,7 +21,7 @@ RUN chmod +x /etcd/start-local-cluster
 WORKDIR etcd
 
 #for standalone
-EXPOSE 4001 7001
+EXPOSE 4001 
 
 #for local cluster
 #node proxy 
