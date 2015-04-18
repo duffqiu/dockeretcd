@@ -1,0 +1,6 @@
+# !/bin/bash
+
+etcd_ip=$(ip -o -4 addr list eth0 | grep global | awk '{print $4}'| cut -d/ -f1)
+
+/etcd/etcd -name etcd0 -listen-client-urls http://$etcd_ip:4001 -advertise-client-urls http://127.0.0.1:4001 -listen-peer-urls http://127.0.0.1:7001 -initial-advertise-peer-urls http://127.0.0.1:7001 -initial-cluster-token etcd-cluster-1 -initial-cluster 'etcd0=http://127.0.0.1:7001' -initial-cluster-state new
+
