@@ -11,7 +11,7 @@ docker run -d --name etcd -p 4001:4001 duffqiu/etcd
 ### run a local cluster in one container
 
 ```
-docker run -d --name etcd-cluster -p 9001:9001 duffqiu/etcd /etcd/start-local-cluster
+docker run -d --name etcd-cluster -p 9001:9001 -p 4001:4001 -p 4002:4002 -p 4003:4003 duffqiu/etcd /etcd/start-local-cluster
 ```
 
 ### run mutilple nodes to setup a cluster

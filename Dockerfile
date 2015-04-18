@@ -2,7 +2,7 @@ FROM centos:latest
 MAINTAINER duffqiu@gmail.com
 
 RUN yum -y  update
-RUN yum install -y wget tar
+RUN yum install -y wget tar gawk
 
 RUN wget --no-cookies --no-check-certificate https://github.com/coreos/etcd/releases/download/v2.0.9/etcd-v2.0.9-linux-amd64.tar.gz
 
@@ -24,9 +24,11 @@ WORKDIR etcd
 EXPOSE 4001 
 
 #for local cluster
+EXPOSE 4002 4003
 #node proxy 
 EXPOSE 9001
 
+#must set this entrypoint to use bash, otherwise it can't run the bash script command
 ENTRYPOINT ["/bin/bash", "-c"]
 
 CMD ["/etcd/start-standalone"]
