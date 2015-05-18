@@ -1,0 +1,10 @@
+[Unit]
+Description=self etcd init service
+After=selfetcd.service
+Requires=selfetcd.service
+
+[Service]
+ExecStart=-/usr/bin/etcdctl --peers=127.0.0.1:8001 set /discovery/6c007a14875d53d9bf0ef5a6fc0257c817f0fb83/_config/size \"value=9\"
+
+[Install]
+WantedBy=multi-user.target
