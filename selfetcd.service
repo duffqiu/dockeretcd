@@ -1,10 +1,12 @@
 [Unit]
-Description=self etcd init service
-After=selfetcd.service
-Requires=selfetcd.service
+Description=self etcd service
+After=docker.service
 
 [Service]
-ExecStart=-/usr/bin/etcdctl --peers=127.0.0.1:8001 set /discovery/6c007a14875d53d9bf0ef5a6fc0257c817f0fb83/_config/size \"value=9\"
-
-[Install]
-WantedBy=multi-user.target
+ExecStartPre=-/usr/bin/docker kill etcd 
+ExecStartPre=-/usr/bin/docker rm etcd 
+ExecStart=/usr/bin/docker run --name etcd -v /mirror/etcd:/etcd/data -p 8001:4001 -e ETCD_DATA_DIR=/etcd/data duffqiu/etcd
+ExecStop=-/usr/bin/docker stop etcd
+estart=always
+RestartSec=10s
+LimitNOFILE=40000
