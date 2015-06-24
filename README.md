@@ -2,10 +2,10 @@
 the docker file for etcd based on centos7
 
 
-### run a standalone server
+### run a standalone server, must specify the ip which client will connect to. otherwise etcdclt will not work. you also can mount the specific dir to the etcd dir 
 
 ```
-docker run -d --name etcd -p 4001:4001 duffqiu/etcd
+docker run -d --name etcd -p 8001:4001  -e ETCD_DATA_DIR=/etcd/data -e ADV_URLS=http://192.168.3.149:8001 duffqiu/etcd
 ```
 
 ### run a local cluster in one container
